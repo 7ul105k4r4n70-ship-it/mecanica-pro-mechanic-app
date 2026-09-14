@@ -16,7 +16,7 @@ import {
   ChevronLeft,
   Check,
   RefreshCw,
-  Sparkles,
+  Save,
   Cloud,
 } from 'lucide-react'
 
@@ -581,7 +581,7 @@ export default function MechanicApp() {
           {saveSuccess && (
             <div className="alert-box alert-success">
               <CheckCircle2 size={16} />
-              <span>Atualizado com sucesso em tempo real!</span>
+              <span>Alterações salvas com sucesso!</span>
             </div>
           )}
           {saveError && (
@@ -599,8 +599,8 @@ export default function MechanicApp() {
               disabled={saving}
               className="btn-save-step"
             >
-              {saving ? <Loader2 size={18} className="spin" /> : <Sparkles size={18} />}
-              {saving ? 'Atualizando...' : 'Salvar e Notificar Cliente'}
+              {saving ? <Loader2 size={18} className="spin" /> : <Save size={18} />}
+              {saving ? 'Salvando...' : 'Salvar Alterações'}
             </button>
           </div>
         </div>
