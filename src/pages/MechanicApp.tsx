@@ -31,12 +31,12 @@ const API_BASE = getApiBase()
 
 // ─── Etapas disponíveis ────────────────────────────────────────────────────────
 const STEPS = [
-  { id: 'Recebendo Veículo', label: 'Recebimento', desc: 'Chegada na oficina e conferência', icon: Car, color: '#818cf8', status: 'IN_PROGRESS' },
-  { id: 'Diagnóstico Inicial', label: 'Diagnóstico', desc: 'Inspeção técnica e rastreamento', icon: Search, color: '#a78bfa', status: 'IN_PROGRESS' },
-  { id: 'Aguardando Aprovação', label: 'Aguardando', desc: 'Aguardando confirmação do cliente', icon: Clock, color: '#fbbf24', status: 'IN_PROGRESS' },
-  { id: 'Em Manutenção', label: 'Manutenção', desc: 'Serviço em andamento na bancada', icon: Wrench, color: '#60a5fa', status: 'IN_PROGRESS' },
-  { id: 'Teste e Inspeção Final', label: 'Testes', desc: 'Validação e teste de rodagem', icon: CheckCircle2, color: '#34d399', status: 'IN_PROGRESS' },
-  { id: 'Pronto para Retirada', label: 'Pronto', desc: 'Veículo finalizado e liberado', icon: Star, color: '#4ade80', status: 'FINISHED' },
+  { id: 'Recebendo Veículo', label: 'Recebimento', desc: 'Chegada na oficina e conferência', icon: Car, color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe', status: 'IN_PROGRESS' },
+  { id: 'Diagnóstico Inicial', label: 'Diagnóstico', desc: 'Inspeção técnica e rastreamento', icon: Search, color: '#4f46e5', bg: '#eef2ff', border: '#c7d2fe', status: 'IN_PROGRESS' },
+  { id: 'Aguardando Aprovação', label: 'Aguardando', desc: 'Aguardando confirmação do cliente', icon: Clock, color: '#d97706', bg: '#fffbeb', border: '#fde68a', status: 'IN_PROGRESS' },
+  { id: 'Em Manutenção', label: 'Manutenção', desc: 'Serviço em andamento na bancada', icon: Wrench, color: '#0284c7', bg: '#f0f9ff', border: '#bae6fd', status: 'IN_PROGRESS' },
+  { id: 'Teste e Inspeção Final', label: 'Testes', desc: 'Validação e teste de rodagem', icon: CheckCircle2, color: '#059669', bg: '#ecfdf5', border: '#a7f3d0', status: 'IN_PROGRESS' },
+  { id: 'Pronto para Retirada', label: 'Pronto', desc: 'Veículo finalizado e liberado', icon: Star, color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0', status: 'FINISHED' },
 ]
 
 export default function MechanicApp() {
@@ -316,8 +316,8 @@ export default function MechanicApp() {
         <div className="mobile-viewport">
           <div className="login-card" style={{ textAlign: 'center', minHeight: '60vh', justifyContent: 'center' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-              <Loader2 size={36} className="spin text-indigo-400" />
-              <p style={{ fontSize: '14px', color: '#94a3b8' }}>Carregando dados da oficina...</p>
+              <Loader2 size={36} className="spin text-blue-600" />
+              <p style={{ fontSize: '14px', color: '#64748b' }}>Carregando dados da oficina...</p>
             </div>
           </div>
           <style>{styles}</style>
@@ -330,17 +330,17 @@ export default function MechanicApp() {
         <div className="mobile-viewport">
           <div className="login-card">
             <div className="brand-header">
-              <div className="brand-badge" style={{ background: 'rgba(239, 68, 68, 0.15)', borderColor: 'rgba(239, 68, 68, 0.4)' }}>
-                <AlertCircle size={26} color="#f87171" />
+              <div className="brand-badge" style={{ background: '#fee2e2', borderColor: '#fecaca' }}>
+                <AlertCircle size={26} color="#dc2626" />
               </div>
               <h1 className="brand-name">Link Não Encontrado</h1>
               <p className="brand-sub">{slugError}</p>
             </div>
             <div className="form-body text-center">
-              <p style={{ fontSize: '13px', color: '#94a3b8', lineHeight: '1.5' }}>
+              <p style={{ fontSize: '13px', color: '#64748b', lineHeight: '1.5' }}>
                 O link acessado <code>/{slug}</code> não corresponde a nenhuma oficina cadastrada no sistema.
               </p>
-              <p style={{ fontSize: '12px', color: '#64748b', marginTop: '8px' }}>
+              <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '8px' }}>
                 Solicite o link correto ao gerente ou proprietário da sua oficina.
               </p>
             </div>
@@ -369,7 +369,7 @@ export default function MechanicApp() {
               />
             ) : (
               <div className="brand-badge">
-                <Wrench size={26} color="#818cf8" />
+                <Wrench size={26} color="#ffffff" />
               </div>
             )}
             <h1 className="brand-name">
@@ -525,26 +525,26 @@ export default function MechanicApp() {
                     onClick={() => setSelectedStep(step.id)}
                     className={`step-item ${isSelected ? 'step-selected' : ''}`}
                     style={{
-                      borderColor: isSelected ? step.color : 'rgba(255,255,255,0.08)',
-                      backgroundColor: isSelected ? 'rgba(99,102,241,0.12)' : 'rgba(255,255,255,0.03)',
+                      borderColor: isSelected ? step.color : '#e2e8f0',
+                      backgroundColor: isSelected ? (step.bg || '#eff6ff') : '#ffffff',
                     }}
                   >
                     <div
                       className="step-icon-box"
                       style={{
-                        backgroundColor: isSelected ? step.color : 'rgba(255,255,255,0.08)',
-                        color: isSelected ? '#0f0f1a' : step.color,
+                        backgroundColor: isSelected ? step.color : '#f1f5f9',
+                        color: isSelected ? '#ffffff' : step.color,
                       }}
                     >
                       <StepIcon size={18} />
                     </div>
                     <div className="step-content">
-                      <span className="step-label">{step.id}</span>
-                      <span className="step-desc">{step.desc}</span>
+                      <span className="step-label" style={{ color: isSelected ? '#0f172a' : '#1e293b' }}>{step.id}</span>
+                      <span className="step-desc" style={{ color: '#64748b' }}>{step.desc}</span>
                     </div>
                     {isSelected && (
                       <div className="step-check-mark" style={{ backgroundColor: step.color }}>
-                        <Check size={14} color="#0f0f1a" strokeWidth={3} />
+                        <Check size={14} color="#ffffff" strokeWidth={3} />
                       </div>
                     )}
                   </button>
@@ -608,14 +608,14 @@ export default function MechanicApp() {
         <header className="mobile-header">
           <div className="header-left">
             <div className="brand-mini-icon">
-              <Wrench size={16} color="#818cf8" />
+              <Wrench size={16} color="#ffffff" />
             </div>
             <div>
               <h1 className="header-title">{company?.name || 'Oficina Mecânica'}</h1>
               <span className="header-sub">
                 Mecânico: <strong>{currentMechanic?.name || login}</strong>
                 {currentMechanic?.login && currentMechanic.login !== (currentMechanic.name || '').toLowerCase() && (
-                  <span style={{ opacity: 0.7, marginLeft: '4px' }}>(@{currentMechanic.login})</span>
+                  <span style={{ opacity: 0.8, marginLeft: '4px' }}>(@{currentMechanic.login})</span>
                 )}
               </span>
             </div>
@@ -630,7 +630,7 @@ export default function MechanicApp() {
         {finishedNotice && (
           <div className="alert-box alert-success mb-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="shrink-0 text-emerald-400" />
+              <CheckCircle2 size={16} className="shrink-0 text-emerald-600" />
               <span>{finishedNotice}</span>
             </div>
             <button
@@ -676,12 +676,12 @@ export default function MechanicApp() {
         <div className="vehicles-list">
           {loadingOrders ? (
             <div className="empty-state">
-              <Loader2 size={24} className="spin text-indigo-400" />
+              <Loader2 size={24} className="spin text-blue-600" />
               <p>Atualizando veículos...</p>
             </div>
           ) : filteredOrders.length === 0 ? (
             <div className="empty-state">
-              <Car size={32} color="#64748b" />
+              <Car size={32} color="#94a3b8" />
               <p>Nenhum veículo em andamento encontrado.</p>
               {searchFilter && <span className="empty-sub">Tente buscar por outro termo.</span>}
             </div>
@@ -717,8 +717,9 @@ export default function MechanicApp() {
                     <div
                       className="step-pill"
                       style={{
-                        backgroundColor: currentStep ? `${currentStep.color}1a` : 'rgba(255,255,255,0.06)',
-                        color: currentStep ? currentStep.color : '#94a3b8',
+                        backgroundColor: currentStep ? (currentStep.bg || '#eff6ff') : '#f1f5f9',
+                        color: currentStep ? currentStep.color : '#64748b',
+                        border: `1px solid ${currentStep ? (currentStep.border || '#bfdbfe') : '#e2e8f0'}`,
                       }}
                     >
                       <span className="step-pill-dot" style={{ backgroundColor: currentStep?.color || '#94a3b8' }} />
@@ -749,12 +750,12 @@ const styles = `
     box-sizing: border-box;
   }
 
-  /* Viewport Base */
+  /* Viewport Base no padrão SaaS Mecânica Pro */
   .mobile-viewport {
     min-height: 100dvh;
     width: 100%;
-    background-color: #0b0c16;
-    color: #f8fafc;
+    background-color: #f8fafc;
+    color: #0f172a;
     display: flex;
     justify-content: center;
     padding: 0;
@@ -765,12 +766,13 @@ const styles = `
     width: 100%;
     max-width: 480px;
     min-height: 100dvh;
-    background: #0f1020;
+    background: #ffffff;
     display: flex;
     flex-direction: column;
     padding-bottom: 24px;
-    border-left: 1px solid rgba(255,255,255,0.04);
-    border-right: 1px solid rgba(255,255,255,0.04);
+    border-left: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     position: relative;
     box-sizing: border-box;
   }
@@ -780,7 +782,7 @@ const styles = `
     width: 100%;
     max-width: 420px;
     margin: auto;
-    padding: 28px 20px;
+    padding: 32px 20px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -795,40 +797,41 @@ const styles = `
   }
 
   .brand-badge {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-    border: 1px solid rgba(129, 140, 248, 0.3);
+    background: #2563eb;
+    border: 1px solid #1d4ed8;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 14px;
-    box-shadow: 0 8px 24px -6px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 14px -2px rgba(37, 99, 235, 0.35);
   }
 
   .brand-name {
     font-size: 22px;
     font-weight: 800;
-    color: #ffffff;
+    color: #0f172a;
     letter-spacing: -0.02em;
   }
 
   .brand-sub {
     font-size: 13px;
-    color: #94a3b8;
+    color: #64748b;
     margin-top: 4px;
+    font-weight: 500;
   }
 
   .form-body {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 20px;
-    padding: 22px 18px;
+    padding: 24px 20px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
     width: 100%;
     box-sizing: border-box;
   }
@@ -842,9 +845,9 @@ const styles = `
   }
 
   .input-label {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
-    color: #cbd5e1;
+    color: #334155;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -853,19 +856,19 @@ const styles = `
   .input-text {
     width: 100%;
     box-sizing: border-box;
-    background: rgba(15, 16, 32, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     padding: 12px 14px;
-    color: #ffffff;
+    color: #0f172a;
     font-size: 15px;
     font-weight: 500;
     outline: none;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
   }
   .input-text:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
   .input-hint {
@@ -873,7 +876,7 @@ const styles = `
     color: #64748b;
   }
 
-  /* PIN input em Grid de 4 colunas perfeitas */
+  /* PIN input em Grid de 4 colunas */
   .pin-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -889,21 +892,21 @@ const styles = `
     max-width: 100%;
     height: 54px;
     box-sizing: border-box;
-    background: rgba(15, 16, 32, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     text-align: center;
     font-size: 22px;
     font-weight: 800;
-    color: #ffffff;
+    color: #0f172a;
     outline: none;
     padding: 0;
     margin: 0;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
   }
   .pin-box:focus {
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
   .checkbox-row {
@@ -911,13 +914,13 @@ const styles = `
     align-items: center;
     gap: 8px;
     font-size: 12px;
-    color: #94a3b8;
+    color: #475569;
     cursor: pointer;
     user-select: none;
   }
 
   .custom-checkbox {
-    accent-color: #6366f1;
+    accent-color: #2563eb;
     width: 16px;
     height: 16px;
     cursor: pointer;
@@ -925,8 +928,8 @@ const styles = `
 
   .btn-submit {
     width: 100%;
-    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-    border: none;
+    background: #2563eb;
+    border: 1px solid #1d4ed8;
     border-radius: 14px;
     padding: 14px;
     color: #ffffff;
@@ -937,8 +940,11 @@ const styles = `
     justify-content: center;
     gap: 8px;
     cursor: pointer;
-    box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.5);
-    transition: transform 0.15s, opacity 0.15s;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: all 0.15s ease;
+  }
+  .btn-submit:hover {
+    background: #1d4ed8;
   }
   .btn-submit:active {
     transform: scale(0.98);
@@ -960,9 +966,8 @@ const styles = `
     align-items: center;
     justify-content: space-between;
     padding: 14px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(15, 16, 32, 0.85);
-    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
     position: sticky;
     top: 0;
     z-index: 20;
@@ -978,46 +983,59 @@ const styles = `
     width: 32px;
     height: 32px;
     border-radius: 10px;
-    background: rgba(99, 102, 241, 0.15);
+    background: #2563eb;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
   }
 
   .header-title {
     font-size: 14px;
     font-weight: 700;
-    color: #ffffff;
+    color: #0f172a;
     display: block;
     line-height: 1.2;
   }
 
   .header-sub {
     font-size: 11px;
-    color: #94a3b8;
+    color: #64748b;
   }
 
   .btn-logout {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 6px 10px;
-    color: #94a3b8;
+    color: #475569;
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.15s;
+  }
+  .btn-logout:hover {
+    background: #e2e8f0;
+    color: #0f172a;
   }
 
   .btn-logout-icon {
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 8px;
-    color: #94a3b8;
+    color: #475569;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-logout-icon:hover {
+    background: #e2e8f0;
+    color: #0f172a;
   }
 
   .btn-back {
@@ -1026,18 +1044,21 @@ const styles = `
     gap: 2px;
     background: transparent;
     border: none;
-    color: #818cf8;
+    color: #2563eb;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     padding: 4px 0;
+  }
+  .btn-back:hover {
+    color: #1d4ed8;
   }
 
   /* Barra de Pesquisa */
   .search-bar-row {
     display: flex;
     gap: 8px;
-    padding: 12px 16px 6px;
+    padding: 14px 16px 6px;
   }
 
   .search-input-wrap {
@@ -1055,16 +1076,18 @@ const styles = `
 
   .search-input {
     width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     padding: 10px 32px 10px 36px;
     font-size: 13px;
-    color: #ffffff;
+    color: #0f172a;
     outline: none;
+    transition: border-color 0.15s;
   }
   .search-input:focus {
-    border-color: #6366f1;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
   .search-clear {
@@ -1078,28 +1101,32 @@ const styles = `
   }
 
   .btn-refresh {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     width: 42px;
     height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #94a3b8;
+    color: #475569;
     cursor: pointer;
+    transition: background-color 0.15s;
+  }
+  .btn-refresh:hover {
+    background: #f8fafc;
   }
 
   .orders-count-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 18px 10px;
-    font-size: 11px;
+    padding: 6px 18px 10px;
+    font-size: 12px;
     color: #64748b;
   }
   .count-status {
-    color: #34d399;
+    color: #16a34a;
     font-weight: 600;
   }
 
@@ -1112,20 +1139,25 @@ const styles = `
   }
 
   .vehicle-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 14px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     cursor: pointer;
-    transition: transform 0.15s, border-color 0.15s, background-color 0.15s;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s, border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
     user-select: none;
+  }
+  .vehicle-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
   .vehicle-card:active {
     transform: scale(0.98);
-    background: rgba(255, 255, 255, 0.05);
+    background: #f8fafc;
   }
 
   .card-top {
@@ -1135,33 +1167,36 @@ const styles = `
   }
 
   .mini-plate {
-    background: #1e293b;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     padding: 3px 8px;
     font-family: monospace;
     font-weight: 800;
     font-size: 13px;
     letter-spacing: 0.08em;
-    color: #ffffff;
+    color: #0f172a;
   }
 
   .os-badge {
     font-size: 11px;
-    color: #94a3b8;
+    color: #475569;
     font-weight: 600;
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 6px;
     font-family: monospace;
   }
 
   .card-model {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    color: #ffffff;
+    color: #0f172a;
   }
 
   .card-customer {
     font-size: 12px;
-    color: #94a3b8;
+    color: #475569;
   }
 
   .card-desc {
@@ -1177,8 +1212,8 @@ const styles = `
     justify-content: space-between;
     align-items: center;
     margin-top: 4px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
   }
 
   .step-pill {
@@ -1203,7 +1238,7 @@ const styles = `
     gap: 2px;
     font-size: 12px;
     font-weight: 600;
-    color: #818cf8;
+    color: #2563eb;
   }
 
   /* Tela de Detalhe / Hero */
@@ -1211,8 +1246,9 @@ const styles = `
     margin: 16px 16px 8px;
     padding: 18px;
     border-radius: 18px;
-    background: linear-gradient(135deg, rgba(30, 27, 75, 0.6) 0%, rgba(15, 23, 42, 0.6) 100%);
-    border: 1px solid rgba(129, 140, 248, 0.2);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1220,22 +1256,23 @@ const styles = `
   }
 
   .plate-badge {
-    background: #0f172a;
-    border: 2px solid #334155;
+    background: #ffffff;
+    border: 2px solid #0f172a;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
 
   .plate-flag {
     display: block;
-    background: #0284c7;
+    background: #003399;
     color: #ffffff;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.1em;
     padding: 2px 14px;
+    text-align: center;
   }
 
   .plate-text {
@@ -1245,32 +1282,36 @@ const styles = `
     font-weight: 900;
     letter-spacing: 0.15em;
     padding: 4px 16px;
-    color: #f8fafc;
+    color: #0f172a;
+    background: #ffffff;
   }
 
   .vehicle-model {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
-    color: #ffffff;
+    color: #0f172a;
   }
 
   .vehicle-sub {
-    font-size: 12px;
-    color: #94a3b8;
+    font-size: 13px;
+    color: #475569;
     margin-top: 4px;
   }
 
   .service-desc {
     margin-top: 10px;
-    padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
-    font-size: 11px;
-    color: #cbd5e1;
+    font-size: 12px;
+    color: #334155;
+    text-align: left;
+    width: 100%;
   }
   .service-desc span {
-    font-weight: 600;
-    color: #a5b4fc;
+    font-weight: 700;
+    color: #2563eb;
   }
 
   /* Seções */
@@ -1288,7 +1329,7 @@ const styles = `
   .section-title {
     font-size: 13px;
     font-weight: 700;
-    color: #cbd5e1;
+    color: #475569;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -1299,8 +1340,9 @@ const styles = `
     gap: 5px;
     font-size: 10px;
     font-weight: 700;
-    color: #34d399;
-    background: rgba(52, 211, 153, 0.1);
+    color: #16a34a;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
     padding: 2px 8px;
     border-radius: 12px;
   }
@@ -1309,8 +1351,7 @@ const styles = `
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #34d399;
-    box-shadow: 0 0 6px #34d399;
+    background: #16a34a;
   }
 
   /* Etapas verticais estilo lista mobile */
@@ -1326,11 +1367,13 @@ const styles = `
     gap: 12px;
     padding: 12px;
     border-radius: 14px;
-    border: 1px solid;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
     text-align: left;
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.15s ease;
     user-select: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   }
   .step-item:active {
     transform: scale(0.99);
@@ -1353,14 +1396,14 @@ const styles = `
   }
 
   .step-label {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
-    color: #ffffff;
+    color: #0f172a;
   }
 
   .step-desc {
     font-size: 11px;
-    color: #94a3b8;
+    color: #64748b;
   }
 
   .step-check-mark {
@@ -1375,18 +1418,20 @@ const styles = `
 
   .notes-textarea {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     border-radius: 12px;
     padding: 12px;
-    color: #ffffff;
+    color: #0f172a;
     font-size: 13px;
     outline: none;
     resize: none;
     font-family: inherit;
+    transition: border-color 0.15s;
   }
   .notes-textarea:focus {
-    border-color: #6366f1;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   }
 
   /* Rodapé de Ação Fixo */
@@ -1397,8 +1442,8 @@ const styles = `
 
   .btn-save-step {
     width: 100%;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    border: none;
+    background: #16a34a;
+    border: 1px solid #15803d;
     border-radius: 14px;
     padding: 15px;
     color: #ffffff;
@@ -1409,8 +1454,11 @@ const styles = `
     justify-content: center;
     gap: 8px;
     cursor: pointer;
-    box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.4);
-    transition: transform 0.15s;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    transition: all 0.15s ease;
+  }
+  .btn-save-step:hover {
+    background: #15803d;
   }
   .btn-save-step:active {
     transform: scale(0.98);
@@ -1429,15 +1477,15 @@ const styles = `
   }
 
   .alert-error {
-    background: rgba(239, 68, 68, 0.12);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #fca5a5;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
   }
 
   .alert-success {
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-    color: #6ee7b7;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
   }
 
   .empty-state {
@@ -1452,7 +1500,7 @@ const styles = `
   }
   .empty-sub {
     font-size: 11px;
-    color: #475569;
+    color: #94a3b8;
   }
 
   .spin {
