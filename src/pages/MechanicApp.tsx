@@ -67,6 +67,7 @@ export default function MechanicApp() {
   // Session state
   const [isLogged, setIsLogged] = useState(false)
   const [company, setCompany] = useState<{ name: string; logoUrl: string | null } | null>(null)
+  const [currentMechanic, setCurrentMechanic] = useState<{ name: string; login: string } | null>(null)
   const [ordersList, setOrdersList] = useState<any[]>([])
   const [loadingOrders, setLoadingOrders] = useState(false)
   const [searchFilter, setSearchFilter] = useState('')
@@ -168,6 +169,9 @@ export default function MechanicApp() {
       }
 
       setCompany(res.data.company)
+      if (res.data.mechanic) {
+        setCurrentMechanic(res.data.mechanic)
+      }
       setOrdersList(res.data.orders || [])
       setIsLogged(true)
     } catch (err: any) {
@@ -284,6 +288,7 @@ export default function MechanicApp() {
     setIsLogged(false)
     setActiveOrder(null)
     setOrdersList([])
+    setCurrentMechanic(null)
   }
 
   // Filtro de veículos:
@@ -386,13 +391,13 @@ export default function MechanicApp() {
                 type="text"
                 value={login}
                 onChange={(e) => setLogin(e.target.value)}
-                placeholder="Ex: mecanico"
+                placeholder="Ex: seu usuário ou mecanico"
                 className="input-text"
                 autoCapitalize="none"
                 autoCorrect="off"
                 spellCheck={false}
               />
-              <span className="input-hint">Definido nas Configurações da oficina</span>
+              <span className="input-hint">Digite seu login cadastrado na oficina (ex: joao, carlos ou mecanico)</span>
             </div>
 
             {/* Campo Senha (PIN de 4 dígitos) */}
@@ -608,7 +613,10 @@ export default function MechanicApp() {
             <div>
               <h1 className="header-title">{company?.name || 'Oficina Mecânica'}</h1>
               <span className="header-sub">
-                Mecânico: <strong>{login}</strong>
+                Mecânico: <strong>{currentMechanic?.name || login}</strong>
+                {currentMechanic?.login && currentMechanic.login !== (currentMechanic.name || '').toLowerCase() && (
+                  <span style={{ opacity: 0.7, marginLeft: '4px' }}>(@{currentMechanic.login})</span>
+                )}
               </span>
             </div>
           </div>
