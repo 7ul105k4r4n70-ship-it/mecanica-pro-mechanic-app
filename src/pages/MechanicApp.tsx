@@ -986,8 +986,8 @@ const styles = `
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 36px;
-    margin-bottom: 24px;
+    margin-top: 20px;
+    margin-bottom: 12px;
     opacity: 0.85;
     user-select: none;
     pointer-events: none;
@@ -997,8 +997,8 @@ const styles = `
     opacity: 1;
   }
   .watermark-img {
-    height: 110px;
-    max-width: 300px;
+    height: 48px;
+    max-width: 160px;
     width: auto;
     object-fit: contain;
   }
