@@ -17,7 +17,7 @@ import {
   Check,
   RefreshCw,
   Sparkles,
-  Smartphone,
+  Cloud,
 } from 'lucide-react'
 
 // ─── Configuração de API ───────────────────────────────────────────────────────
@@ -450,10 +450,22 @@ export default function MechanicApp() {
             </button>
           </form>
 
-          {/* Rodapé informativo */}
-          <div className="login-footer">
-            <Smartphone size={14} />
-            <span>App responsivo para uso direto na oficina</span>
+          {/* Marca d'água Cloud */}
+          <div className="watermark-footer">
+            <img
+              src="/sk4r4n70-logo.png"
+              alt="SK4R4N70 CLOUD"
+              className="watermark-img"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none'
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                if (fallback) fallback.style.display = 'flex'
+              }}
+            />
+            <div className="watermark-fallback" style={{ display: 'none' }}>
+              <Cloud size={16} />
+              <span>SK4R4N70 CLOUD</span>
+            </div>
           </div>
         </div>
 
@@ -735,6 +747,24 @@ export default function MechanicApp() {
             })
           )}
         </div>
+
+        {/* Marca d'água SK4R4N70 CLOUD */}
+        <div className="watermark-footer" style={{ marginTop: 'auto', paddingTop: '24px', paddingBottom: '8px' }}>
+          <img
+            src="/sk4r4n70-logo.png"
+            alt="SK4R4N70 CLOUD"
+            className="watermark-img"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none'
+              const fallback = e.currentTarget.nextElementSibling as HTMLElement
+              if (fallback) fallback.style.display = 'flex'
+            }}
+          />
+          <div className="watermark-fallback" style={{ display: 'none' }}>
+            <Cloud size={16} />
+            <span>SK4R4N70 CLOUD</span>
+          </div>
+        </div>
       </div>
 
       <style>{styles}</style>
@@ -950,14 +980,36 @@ const styles = `
     transform: scale(0.98);
   }
 
-  .login-footer {
+  /* Marca d'água Cloud */
+  .watermark-footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
     margin-top: 24px;
-    font-size: 12px;
-    color: #64748b;
+    opacity: 0.35;
+    user-select: none;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .watermark-footer:hover {
+    opacity: 0.6;
+  }
+  .watermark-img {
+    height: 30px;
+    max-width: 140px;
+    object-fit: contain;
+    filter: grayscale(100%);
+  }
+  .watermark-fallback {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #94a3b8;
+    text-transform: uppercase;
   }
 
   /* Header Mobile */
