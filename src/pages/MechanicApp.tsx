@@ -986,9 +986,9 @@ const styles = `
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 32px;
-    margin-bottom: 12px;
-    opacity: 0.8;
+    margin-top: 36px;
+    margin-bottom: 24px;
+    opacity: 0.85;
     user-select: none;
     pointer-events: none;
     transition: opacity 0.2s ease;
@@ -997,11 +997,10 @@ const styles = `
     opacity: 1;
   }
   .watermark-img {
-    height: 90px;
-    max-width: 260px;
+    height: 110px;
+    max-width: 300px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
   }
   .watermark-fallback {
     display: flex;
