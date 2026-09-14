@@ -987,19 +987,19 @@ const styles = `
     align-items: center;
     justify-content: center;
     margin-top: 24px;
-    opacity: 0.35;
+    opacity: 0.5;
     user-select: none;
     pointer-events: none;
     transition: opacity 0.2s ease;
   }
   .watermark-footer:hover {
-    opacity: 0.6;
+    opacity: 0.75;
   }
   .watermark-img {
-    height: 30px;
-    max-width: 140px;
+    height: 46px;
+    max-width: 150px;
     object-fit: contain;
-    filter: grayscale(100%);
+    mix-blend-mode: multiply;
   }
   .watermark-fallback {
     display: flex;
