@@ -986,29 +986,31 @@ const styles = `
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 24px;
-    opacity: 0.5;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    opacity: 0.8;
     user-select: none;
     pointer-events: none;
     transition: opacity 0.2s ease;
   }
   .watermark-footer:hover {
-    opacity: 0.75;
+    opacity: 1;
   }
   .watermark-img {
-    height: 46px;
-    max-width: 150px;
+    height: 90px;
+    max-width: 260px;
+    width: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
   }
   .watermark-fallback {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 700;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 800;
     letter-spacing: 0.15em;
-    color: #94a3b8;
+    color: #475569;
     text-transform: uppercase;
   }
 
