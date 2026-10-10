@@ -25,7 +25,7 @@ const getApiBase = () => {
   if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
     return 'http://localhost:3002'
   }
-  return import.meta.env.VITE_API_URL || 'https://mecanicapro-backend.vercel.app'
+  return import.meta.env.VITE_API_URL || 'https://mecanica-api.sk4r4n70.cloud';
 }
 const API_BASE = getApiBase()
 
