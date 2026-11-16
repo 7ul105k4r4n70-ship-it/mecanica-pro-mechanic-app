@@ -195,8 +195,18 @@ export default function MechanicApp() {
       })
       setOrdersList(res.data.orders || [])
       if (res.data.company) setCompany(res.data.company)
-    } catch (err) {
-      console.error('Erro ao atualizar lista', err)
+    } catch (err: any) {
+      if (err?.response?.status === 403) {
+        setAuthError(
+          err.response?.data?.message ||
+            'Sistema temporariamente indisponível. Contate o responsável pela oficina.',
+        )
+        setIsLogged(false)
+        setActiveOrder(null)
+        setOrdersList([])
+      } else {
+        console.error('Erro ao atualizar lista', err)
+      }
     } finally {
       setLoadingOrders(false)
     }
@@ -278,7 +288,17 @@ export default function MechanicApp() {
         setTimeout(() => setSaveSuccess(false), 3000)
       }
     } catch (err: any) {
-      setSaveError(err.response?.data?.message || 'Erro ao salvar etapa.')
+      if (err?.response?.status === 403) {
+        setAuthError(
+          err.response?.data?.message ||
+            'Sistema temporariamente indisponível. Contate o responsável pela oficina.',
+        )
+        setIsLogged(false)
+        setActiveOrder(null)
+        setOrdersList([])
+      } else {
+        setSaveError(err.response?.data?.message || 'Erro ao salvar etapa.')
+      }
     } finally {
       setSaving(false)
     }
